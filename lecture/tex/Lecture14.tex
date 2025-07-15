@@ -218,7 +218,7 @@ Real-world systems are always subject to certain state constraints $\mathcal{X}$
 \begin{minipage}[c]{\linewidth}
 \begin{figure}
 	\includegraphics[width=0.85\textwidth, height=0.55\textheight]{fig/lec14/OMG_all_aborts_log.pdf}
-	\caption{Accumulated unsafe events (overcurrent/-voltage) per trainingstep $k$}
+	\caption{Accumulated unsafe events (overcurrent/-voltage) per training step $k$}
 \end{figure}
 \end{minipage}
 \end{column}
@@ -232,7 +232,7 @@ Real-world systems are always subject to certain state constraints $\mathcal{X}$
 	\item \textcolor{signalgreen}{$\mathrm{DDPG}_\mathrm{SG,RLS}$}: Agent with safety shield without a priori knowledge, identifying model using RLS
 	\item Five agents trained per approach
 	\item Results in D. Weber et al., \textit{Safe Reinforcement Learning-Based Control in
-Power Electronic Systems}, 2023
+Power Electronic Systems}, 2023, doi: \href{https://ieeexplore.ieee.org/abstract/document/10182718}{10.1109/FES57669.2023.10182718}
 \end{itemize}
 \end{minipage}
 \end{column}
@@ -246,8 +246,9 @@ Power Electronic Systems}, 2023
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.54\textwidth}
 \begin{minipage}[c]{\linewidth}
+	\vspace{0.25cm}
 \begin{figure}
-	\includegraphics[width=0.75\textwidth, height=0.55\textheight]{fig/lec14/370_vDC_SL_RLS_varLoadtimeseries_testcase.pdf}
+	\includegraphics[width=0.9\textwidth]{fig/lec14/370_vDC_SL_RLS_varLoadtimeseries_testcase.pdf}
 	\caption{Blackstart after training using \textcolor{signalgreen}{$\mathrm{DDPG}_\mathrm{SG,RLS}$}}
 \end{figure}
 \end{minipage}
@@ -258,7 +259,7 @@ Power Electronic Systems}, 2023
 \begin{itemize}
 	\item $\mathrm{DDPG}_\mathrm{SG,RLS}$ agent trained for 150000 steps
 	\item $R_\mathrm{Load}$ changes every step based on random process
-	\item Additional events -- load steps and drifts -- trigged randomly
+	\item Additional events -- load steps and drifts -- triggered randomly
 \end{itemize}
 \end{minipage}
 \end{column}
@@ -317,8 +318,8 @@ Power Electronic Systems}, 2023
 	\item The DQ-DTC is basically a DQN
 	\item Sampling time of the plant system is $T_\text{s}=\SI{50}{\micro\second}$
 	\item DQN inference, safeguarding and system identification must fit into $T_\text{s}$
-	\item Source: M. Schenke et al., \href{https://www.techrxiv.org/articles/preprint/Finite-Set_Direct_Torque_Control_via_Edge_Computing-Assisted_Safe_Reinforcement_Learning_for_a_Permanent_Magnet_Synchronous_Motor/22032578}{\textit{Finite-Set Direct Torque Control via Edge Computing-Assisted
-Safe Reinforcement Learning for a Permanent Magnet Synchronous Motor}}, 2023
+	\item Source: M. Schenke et al., \textit{Finite-Set Direct Torque Control via Edge Computing-Assisted
+Safe Reinforcement Learning for a Permanent Magnet Synchronous Motor}, 2023, doi: \href{https://ieeexplore.ieee.org/abstract/document/10214121}{10.1109/TPEL.2023.3303651}
 \end{itemize}
 \end{minipage}
 \end{column}
@@ -359,8 +360,9 @@ Safe Reinforcement Learning for a Permanent Magnet Synchronous Motor}}, 2023
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.54\textwidth}
 \begin{minipage}[c]{\linewidth}
+	\vspace{0.25cm}
 \begin{figure}
-	\includegraphics[scale=0.5]{fig/lec14/Edge_RL_Pipeline.pdf}
+	\includegraphics[scale=0.6]{fig/lec14/Edge_RL_Pipeline.pdf}
 	\caption{Our edge reinforcement learning pipeline}
 \end{figure}
 \end{minipage}
@@ -507,11 +509,11 @@ Drives for a Wide Range of Power Classes}}, IEEE TPEL, 2023
 		\item Real-time / computational constraints,
 		\item Varying and/or partially unknown environments.
 	\end{itemize}
-	\item Real-world implementations often require more than bare RL algorithms, e.g.,
+	\item<2-> Real-world implementations often require more than bare RL algorithms, e.g.,
 		\begin{itemize}
-			\item Integration of available a priori expert knowledge,
-			\item Combination with model-based control engineering tools.
+			\item<2-> Integration of available a priori expert knowledge,
+			\item<2-> Combination with model-based control engineering tools.
 		\end{itemize}
-		\item Ideal integration of data-driven RL solutions together with expert-based control engineering parts is subject to many open research question. 
+		\item<3-> Ideal integration of data-driven RL solutions together with expert-based control engineering parts is subject to many open research question. 
 \end{itemize}
 }
