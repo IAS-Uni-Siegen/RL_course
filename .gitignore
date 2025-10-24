@@ -40,3 +40,4 @@ lecture/*.pdf
 # misc.
 *.db
 !.gitkeep
+.*vscode
