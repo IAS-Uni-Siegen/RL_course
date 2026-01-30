@@ -40,4 +40,4 @@ lecture/*.pdf
 # misc.
 *.db
 !.gitkeep
-.*vscode
+.ruff_cache/
