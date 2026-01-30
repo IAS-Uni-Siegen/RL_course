@@ -1,8 +1,8 @@
-name: Build LaTeX PDFs
+name: LaTeX + Python Check
 on: 
   pull_request:
     branches:
-      - main
+      - master
     paths:
       - '**.tex'
       - '**.sty'
@@ -12,7 +12,7 @@ on:
       - '**.yml'
   push:
     branches:
-      - main
+      - master
     paths:
       - '**.tex'
       - '**.sty'
@@ -131,7 +131,7 @@ jobs:
 
   deploy:
     needs: build_latex
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
