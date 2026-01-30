@@ -16,7 +16,9 @@ def plot_surface(model, input_dim, visited_states, featurize):
         for vel_idx, vel in enumerate(vel_vec):
             state_tensor[vel_idx, pos_idx] = featurize(np.array([pos, vel]))
 
-    state_tensor = torch.tensor(state_tensor.reshape(-1, input_dim), dtype=torch.float32)
+    state_tensor = torch.tensor(
+        state_tensor.reshape(-1, input_dim), dtype=torch.float32
+    )
     with torch.no_grad():
         q_mat = model(state_tensor)
         q_maxes = q_mat.max(1)[0].view(resolution, resolution).numpy()
@@ -34,9 +36,11 @@ def plot_surface(model, input_dim, visited_states, featurize):
     # Plot
     fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
     ax.plot_surface(pos_mat, vel_mat, -q_maxes, cmap="viridis")
-    ax.scatter(visited_states[:, 0], visited_states[:, 1], -visited_values - 0.05, color="red")
-    ax.set_xlabel('\n\nposition')
-    ax.set_ylabel('\n\nvelocity')
-    ax.set_zlabel(r'$-V_\mathrm{greedy}$', labelpad=12)
+    ax.scatter(
+        visited_states[:, 0], visited_states[:, 1], -visited_values - 0.05, color="red"
+    )
+    ax.set_xlabel("\n\nposition")
+    ax.set_ylabel("\n\nvelocity")
+    ax.set_zlabel(r"$-V_\mathrm{greedy}$", labelpad=12)
     ax.view_init(50, -135)
     plt.show()
