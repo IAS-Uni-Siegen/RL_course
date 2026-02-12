@@ -381,14 +381,16 @@
 %% Demonstration video %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Demonstration video}
-	\begin{tikzpicture}[overlay, remember picture]
-		\node[anchor = center, inner sep=0pt, xshift=0.5cm] at (current page.center) {
-			\href{https://www.youtube.com/watch?v=hQ49Mc6LV78&t=13}{\includegraphics[width=0.7\paperwidth]{fig/lec14/Youtube_preview.jpg}}
-		};
-		\node[anchor = center, inner sep=0pt, xshift=0.5cm] at (current page.center) {
-			\href{https://www.youtube.com/watch?v=hQ49Mc6LV78&t=13}{\fontsize{40}{60} \color{uniblue} \faYoutubePlay}
-		};
-	\end{tikzpicture}
+	\begin{center}
+		\begin{tikzpicture}
+			\node[inner sep=0pt] (img) {
+				\href{https://www.youtube.com/watch?v=hQ49Mc6LV78&t=13}{\includegraphics[width=0.7\textwidth]{fig/lec14/Youtube_preview.jpg}}
+			};
+			\node[inner sep=0pt] at (img.center) {
+				\href{https://www.youtube.com/watch?v=hQ49Mc6LV78&t=13}{\fontsize{40}{60} \color{uniblue} \faYoutubePlay}
+			};
+		\end{tikzpicture}
+	\end{center}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Meta reinforcement learning}
