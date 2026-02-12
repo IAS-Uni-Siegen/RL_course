@@ -127,11 +127,19 @@ All exercises are based on Python 3.12 and site-packages according to the requir
     * [Tutorial solution](../master/exercises/solutions/ex12) 
 
 # Contributions
-We highly appreciate any feedback and input to the course material e.g.
-* typos or content-related discussions (please raise an issue)
-* adding new contents (please provide a pull request)
+- We highly appreciate any feedback and input to the course material e.g.
+    * typos or content-related discussions (please raise an issue)
+    * adding new contents (please provide a pull request)
 
-If you like to contribute to the repo to a larger extent, please do not hesitate to contact us directly. 
+- If you like to contribute to the repo to a larger extent, please do not hesitate to contact us directly. 
+
+- We recommend using [VSCode](https://code.visualstudio.com/) as code editor.
+- [Ruff](https://github.com/astral-sh/ruff) should be installed.
+
+    ```bash
+    pip install ruff
+    ```
+- It is expected that [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) and [Ruff](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff) extensions are installed so that formatting of the code is achieved automatically.
 
 # Credits
 The lecture notes are inspired by
