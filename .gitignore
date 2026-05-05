@@ -41,3 +41,6 @@ lecture/*.pdf
 *.db
 !.gitkeep
 .ruff_cache/
+scripts/
+.serena/
+.vscode/tasks.json
