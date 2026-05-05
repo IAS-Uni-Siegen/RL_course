@@ -257,20 +257,20 @@
 		\Param{step sizes and filter constant $\{\alpha_{w}, \alpha_{\theta}, \tau\}\in\left\{\mathbb{R}|0<\alpha, \tau<1\right\}$}
 		\Init{weights $\bm{w}=\bm{w}^{-}\in\mathbb{R}^{\zeta}$ and $\bm{\theta}=\bm{\theta}^{-}\in\mathbb{R}^d$ arbitrarily, memory $\bm{\mathcal{D}}$}\pause
 		\For{$j=1,2,\ldots,$ episodes}{
-		initialize $\bm{x}_0$\;
-		\For{$k=0,1,\ldots, T-1$ time steps}{
-		$\bm{u}_k \leftarrow$ apply from $\bm{\mu}(\bm{x}_k, \bm{\theta})$ w/wo noise or from behavior policy\;
-		observe $\bm{x}_{k+1}$ and $r_{k+1}$\;
-		store tuple $\left\langle \bm{x}_k, \bm{u}_k, r_{k+1}, \bm{x}_{k+1}\right\rangle$ in $\bm{\mathcal{D}}$\;\pause
-		sample mini-batch $\bm{\mathcal{D}}_b$ from $\bm{\mathcal{D}}$ (after initial memory warmup)\;
-		\For(calculate $Q$-targets){$i=1,\ldots,b$ samples}{
-			\lIf{$\bm{x}_{i+1}$ is terminal}{$y_i=r_{i+1}$}
-			\lElse{$y_i= r_{i+1}+ \gamma \hat{q}(\bm{x}_{i+1},\bm{\mu}(\bm{x}_{i+1},\bm{\theta}^{-}),\bm{w}^{-})$}
-		}\pause
-		fit $\bm{w}$ on loss $\mathcal{L}(\bm{w})=[y - \hat{q}(\bm{x}, \bm{u}, \bm{w})]^2_{\bm{\mathcal{D}}_b}$ with step size $\alpha_{w}$\;\pause
-		$\bm{\theta} \leftarrow \bm{\theta} + \alpha_{\theta} [\nabla_{\bm{\theta}}\bm{\mu}(\bm{x},\bm{\theta})\nabla_{\bm{u}}\hat{q}(\bm{x}, \bm{u}, \bm{w})\vert_{\bm{u}=\bm{\mu}_{\bm{\theta}}(\bm{x})}]_{\bm{\mathcal{D}}_b}$\;\pause
-		Update target net. $\bm{w}^{-} \leftarrow (1-\tau)\bm{w}^{-}+\tau\bm{w}, \,\, \bm{\theta}^{-} \leftarrow (1-\tau)\bm{\theta}^{-}+\tau\bm{\theta}$\;
-		}
+			initialize $\bm{x}_0$\;
+			\For{$k=0,1,\ldots, T-1$ time steps}{
+				$\bm{u}_k \leftarrow$ apply from $\bm{\mu}(\bm{x}_k, \bm{\theta})$ w/wo noise or from behavior policy\;
+				observe $\bm{x}_{k+1}$ and $r_{k+1}$\;
+				store tuple $\left\langle \bm{x}_k, \bm{u}_k, r_{k+1}, \bm{x}_{k+1}\right\rangle$ in $\bm{\mathcal{D}}$\;\pause
+				sample mini-batch $\bm{\mathcal{D}}_b$ from $\bm{\mathcal{D}}$ (after initial memory warmup)\;
+				\For(calculate $Q$-targets){$i=1,\ldots,b$ samples}{
+					\lIf{$\bm{x}_{i+1}$ is terminal}{$y_i=r_{i+1}$}
+					\lElse{$y_i= r_{i+1}+ \gamma \hat{q}(\bm{x}_{i+1},\bm{\mu}(\bm{x}_{i+1},\bm{\theta}^{-}),\bm{w}^{-})$}
+				}\pause
+				fit $\bm{w}$ on loss $\mathcal{L}(\bm{w})=[y - \hat{q}(\bm{x}, \bm{u}, \bm{w})]^2_{\bm{\mathcal{D}}_b}$ with step size $\alpha_{w}$\;\pause
+				$\bm{\theta} \leftarrow \bm{\theta} + \alpha_{\theta} [\nabla_{\bm{\theta}}\bm{\mu}(\bm{x},\bm{\theta})\nabla_{\bm{u}}\hat{q}(\bm{x}, \bm{u}, \bm{w})\vert_{\bm{u}=\bm{\mu}_{\bm{\theta}}(\bm{x})}]_{\bm{\mathcal{D}}_b}$\;\pause
+				Update target net. $\bm{w}^{-} \leftarrow (1-\tau)\bm{w}^{-}+\tau\bm{w}, \,\, \bm{\theta}^{-} \leftarrow (1-\tau)\bm{\theta}^{-}+\tau\bm{\theta}$\;
+			}
 		}
 		\caption{Deep deterministic policy gradient (output: $\bm{\theta}^*$ for $\bm{\mu}^*(\bm{x},\bm{\theta}^*)$ and $\bm{w}^*$ for $\hat{q}^*(\bm{x}, \bm{u}, \bm{w}^*))$}
 		\label{algo:DDPG}
@@ -470,25 +470,25 @@
 		\Param{step sizes and filter constant $\{\alpha_{w}, \alpha_{\theta}, \tau\}\in\left\{\mathbb{R}|0<\alpha, \tau<1\right\}$, policy update rate $k_w\in\left\{\mathbb{N}|1\leq k_w\right\}$, target noise $\bm{\Sigma}\in\mathbb{R}^{m \times m}$ and $\bm{c}\in\mathbb{R}^{m}$}
 		\Init{weights $\{\bm{w}_{1}=\bm{w}_{1}^{-}$, $\bm{w}_{2}=\bm{w}_{2}^{-}\}\in\mathbb{R}^{\zeta}$,  $\bm{\theta}=\bm{\theta}^{-}\in\mathbb{R}^d$ arbitrarily, memory $\bm{\mathcal{D}}$}\pause
 		\For{$j=1,2,\ldots,$ episodes}{
-		initialize $\bm{x}_0$\;
-		\For{$k=0,1,\ldots, T-1$ time steps}{
-		$\bm{u}_k \leftarrow$ apply from $\bm{\mu}(\bm{x}_k, \bm{\theta})$ w/wo noise or from behavior policy\;
-		observe $\bm{x}_{k+1}$ and $r_{k+1}$\;
-		store tuple $\left\langle \bm{x}_k, \bm{u}_k, r_{k+1}, \bm{x}_{k+1}\right\rangle$ in $\bm{\mathcal{D}}$\;\pause
-		sample mini-batch $\bm{\mathcal{D}}_b$ from $\bm{\mathcal{D}}$ (after initial memory warmup)\;
-		\For(calculate $Q$-targets){$i=1,\ldots,b$ samples}{
-			\lIf{$\bm{x}_{i+1}$ is terminal}{$y_i=r_{i+1}$}
-			\Else{
-				$\bm{u}'=\mathrm{clip}\left(\bm{\mu}_{\bm{\theta}^{-}}(\bm{x}_{i+1})+\mathrm{clip}\left(\mathcal{N}(\bm{0},\bm{\Sigma}), -\bm{c},\bm{c}\right), \underline{\bm{u}}, \overline{\bm{u}} \right)$\;
-				$y_i= r_{i+1}+ \gamma \min_{l=1,2}\hat{q}(\bm{x}_{i+1},\bm{u}',\bm{w}_{l}^{-})$\;
+			initialize $\bm{x}_0$\;
+			\For{$k=0,1,\ldots, T-1$ time steps}{
+				$\bm{u}_k \leftarrow$ apply from $\bm{\mu}(\bm{x}_k, \bm{\theta})$ w/wo noise or from behavior policy\;
+				observe $\bm{x}_{k+1}$ and $r_{k+1}$\;
+				store tuple $\left\langle \bm{x}_k, \bm{u}_k, r_{k+1}, \bm{x}_{k+1}\right\rangle$ in $\bm{\mathcal{D}}$\;\pause
+				sample mini-batch $\bm{\mathcal{D}}_b$ from $\bm{\mathcal{D}}$ (after initial memory warmup)\;
+				\For(calculate $Q$-targets){$i=1,\ldots,b$ samples}{
+					\lIf{$\bm{x}_{i+1}$ is terminal}{$y_i=r_{i+1}$}
+					\Else{
+						$\bm{u}'=\mathrm{clip}\left(\bm{\mu}_{\bm{\theta}^{-}}(\bm{x}_{i+1})+\mathrm{clip}\left(\mathcal{N}(\bm{0},\bm{\Sigma}), -\bm{c},\bm{c}\right), \underline{\bm{u}}, \overline{\bm{u}} \right)$\;
+						$y_i= r_{i+1}+ \gamma \min_{l=1,2}\hat{q}(\bm{x}_{i+1},\bm{u}',\bm{w}_{l}^{-})$\;
+					}
+				}\pause
+				fit $\bm{w}_{l}$ on loss $\mathcal{L}(\bm{w}_{l})=[y - \hat{q}(\bm{x}, \bm{u}, \bm{w}_{l})]^2_{\bm{\mathcal{D}}_b}$ with step size $\alpha_{w}$ $\forall \, l$\;\pause
+				\If{$k \mod k_w=0$}{
+					$\bm{\theta} \leftarrow \bm{\theta} + \alpha_{\theta} [\nabla_{\bm{\theta}}\bm{\mu}(\bm{x},\bm{\theta})\nabla_{\bm{u}}\hat{q}(\bm{x}, \bm{u}, \bm{w}_1)\vert_{\bm{u}=\bm{\mu}_{\bm{\theta}}(\bm{x})}]_{\bm{\mathcal{D}}_b}$\; \pause
+					$\bm{w}_{l}^{-} \leftarrow (1-\tau)\bm{w}_{l}^{-}+\tau\bm{w}_{l}, \,\, \bm{\theta}^{-} \leftarrow (1-\tau)\bm{\theta}^{-}+\tau\bm{\theta}$\;
+				}
 			}
-		}\pause
-		fit $\bm{w}_{l}$ on loss $\mathcal{L}(\bm{w}_{l})=[y - \hat{q}(\bm{x}, \bm{u}, \bm{w}_{l})]^2_{\bm{\mathcal{D}}_b}$ with step size $\alpha_{w}$ $\forall \, l$\;\pause
-		\If{$k \mod k_w=0$}{
-			$\bm{\theta} \leftarrow \bm{\theta} + \alpha_{\theta} [\nabla_{\bm{\theta}}\bm{\mu}(\bm{x},\bm{\theta})\nabla_{\bm{u}}\hat{q}(\bm{x}, \bm{u}, \bm{w}_1)\vert_{\bm{u}=\bm{\mu}_{\bm{\theta}}(\bm{x})}]_{\bm{\mathcal{D}}_b}$\; \pause
-			$\bm{w}_{l}^{-} \leftarrow (1-\tau)\bm{w}_{l}^{-}+\tau\bm{w}_{l}, \,\, \bm{\theta}^{-} \leftarrow (1-\tau)\bm{\theta}^{-}+\tau\bm{\theta}$\;
-		}
-		}
 		}
 		\caption{Twin delayed deep deterministic policy gradient (TD3)}
 		\label{algo:TD3}

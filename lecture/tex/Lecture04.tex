@@ -81,13 +81,13 @@
 		\Init{$\hat{v}(x)\, \forall \, x\in\mathcal{X}$ arbitrary except $v_0(x)=0$ if $x$ is terminal\newline
 			$l(x)\leftarrow$ an empty list for every $x\in\mathcal{X}$}
 		\For{$j=1,\ldots,J$ episodes}{
-		Generate an episode following $\pi$: $x_{0}, u_{0}, r_{1},\ldots,x_{T_j}, u_{T_j}, r_{T_{j}+1}$ \;
-		Set $g \leftarrow 0$\;
-		\For{$k=T_j-1, T_j-2, T_j-3,\ldots, 0$ time steps}{
-			$g \leftarrow \gamma g + r_{k+1}$\;
-			\If{$x_{k}\notin \left\langle x_{0}, x_{1}, \ldots, x_{k-1}\right\rangle$}{
-				Append $g$ to list $l(x_k)$\;
-				$\hat{v}(x_k)\leftarrow \mbox{average}(\,l(x_k)\,)$\;}
+			Generate an episode following $\pi$: $x_{0}, u_{0}, r_{1},\ldots,x_{T_j}, u_{T_j}, r_{T_{j}+1}$ \;
+			Set $g \leftarrow 0$\;
+			\For{$k=T_j-1, T_j-2, T_j-3,\ldots, 0$ time steps}{
+				$g \leftarrow \gamma g + r_{k+1}$\;
+				\If{$x_{k}\notin \left\langle x_{0}, x_{1}, \ldots, x_{k-1}\right\rangle$}{
+					Append $g$ to list $l(x_k)$\;
+					$\hat{v}(x_k)\leftarrow \mbox{average}(\,l(x_k)\,)$\;}
 			}
 		}
 		\caption{MC state-value prediction (first visit)}
@@ -106,19 +106,19 @@
 	\end{itemize}
 	\begin{equation}
 		\begin{split}
-			\onslide<3->{\mu_J & = \frac{1}{J}\sum_{i=1}^J g_i }\onslide<4->{= \frac{1}{J}\left[g_J + \sum_{i=1}^{J-1} g_i\right]}                               \\
-			                   & \onslide<5->{= \frac{1}{J}\left[g_J + (J-1) \mu_{J-1}\right]} \onslide<6->{=\mu_{J-1} + \frac{1}{J}\left[g_J-\mu_{J-1}\right].}
+			\onslide<3->{\mu_J & = \frac{1}{J}\sum_{i=1}^J g_i }\onslide<4->{= \frac{1}{J}\left[g_J + \sum_{i=1}^{J-1} g_i\right]}             \\
+			 & \onslide<5->{= \frac{1}{J}\left[g_J + (J-1) \mu_{J-1}\right]} \onslide<6->{=\mu_{J-1} + \frac{1}{J}\left[g_J-\mu_{J-1}\right].}
 		\end{split}
 		\label{eq:inc_impl_MC_pred}
 	\end{equation}
 	\onslide<7->{
-		\begin{itemize}
-			\item \hl{If a given decision problem is non-stationary} or to reduce the memory demand storing the episode number $J$, using a forgetting factor $\alpha\in\left\{\mathbb{R}|0<\alpha<1\right\}$ allows for continuous learning:
-		\end{itemize}
-		\begin{equation}
-			\mu_J = \mu_{J-1} + \alpha\left[g_J-\mu_{J-1}\right] .
-			\label{eq:inc_impl_MC_pred_non_stat}
-		\end{equation}}
+			\begin{itemize}
+				\item \hl{If a given decision problem is non-stationary} or to reduce the memory demand storing the episode number $J$, using a forgetting factor $\alpha\in\left\{\mathbb{R}|0<\alpha<1\right\}$ allows for continuous learning:
+			\end{itemize}
+			\begin{equation}
+				\mu_J = \mu_{J-1} + \alpha\left[g_J-\mu_{J-1}\right] .
+				\label{eq:inc_impl_MC_pred_non_stat}
+			\end{equation}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,9 +139,9 @@
 	\end{itemize}
 	\vspace{0.5cm}
 	\onslide<8->{
-		\begin{footnotebox}
-			More information: S. Singh and  R. Sutton, \enquote{Reinforcement Learning with Replacing Eligibility Traces}, Machine Learning, Vol. 22, pp. 123-158, 1996
-		\end{footnotebox}}
+			\begin{footnotebox}
+				More information: S. Singh and  R. Sutton, \enquote{Reinforcement Learning with Replacing Eligibility Traces}, Machine Learning, Vol. 22, pp. 123-158, 1996
+			\end{footnotebox}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -225,10 +225,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Applying generalized policy iteration (GPI) to MC control}
 	\onslide<1->{GPI concept is directly applied to MC framework using action values:
-		\begin{equation}
-			\label{eq:GPI_MC}
-			\pi_0 \rightarrow \hat{q}_{\pi_0} \rightarrow \pi_1 \rightarrow \hat{q}_{\pi_1} \rightarrow \cdots \pi^* \rightarrow \hat{q}_{\pi^*} \, .
-		\end{equation}}
+			\begin{equation}
+				\label{eq:GPI_MC}
+				\pi_0 \rightarrow \hat{q}_{\pi_0} \rightarrow \pi_1 \rightarrow \hat{q}_{\pi_1} \rightarrow \cdots \pi^* \rightarrow \hat{q}_{\pi^*} \, .
+			\end{equation}}
 	\begin{itemize}
 		\onslide<2->{\item Degree of freedom: choose number of episodes to approximate $\hat{q}_{\pi_i}$.}
 		      \onslide<3->{\item Policy improvement is done by greedy choices:
@@ -237,14 +237,14 @@
 		      \end{equation}}
 	\end{itemize}
 	\onslide<1->{\begin{figure}
-			\begin{minipage}[c]{0.25\textwidth}
-				\includegraphics[height=0.4\textheight]{fig/lec04/MC_GPI.pdf}
-			\end{minipage}
-			\begin{minipage}[c]{0.45\textwidth}
-				\caption{Transferring GPI to MC-based control (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
-				\label{fig:GPI_MC}
-			\end{minipage}
-		\end{figure}}
+				\begin{minipage}[c]{0.25\textwidth}
+					\includegraphics[height=0.4\textheight]{fig/lec04/MC_GPI.pdf}
+				\end{minipage}
+				\begin{minipage}[c]{0.45\textwidth}
+					\caption{Transferring GPI to MC-based control (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
+					\label{fig:GPI_MC}
+				\end{minipage}
+			\end{figure}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -400,9 +400,9 @@
 	\small
 	\begin{equation}
 		\begin{split}
-			\onslide<2->{q_{\pi}(x,\pi'(x)) & = \sum_{u}\pi'(u|x)q_{\pi}(x,u)}                                                                                                                                                \\
-			                                & \onslide<3->{= \frac{\varepsilon}{|\mathcal{U}|}\sum_{u}q_{\pi}(x,u) + (1-\varepsilon)\max_{u}q_{\pi}(x,u)}                                                                     \\
-			                                & \onslide<4->{\geq \frac{\varepsilon}{|\mathcal{U}|}\sum_{u}q_{\pi}(x,u) + (1-\varepsilon)\sum_{u}\frac{\pi(u|x)-\frac{\varepsilon}{|\mathcal{U}|}}{1-\varepsilon}q_{\pi}(x,u).}
+			\onslide<2->{q_{\pi}(x,\pi'(x)) & = \sum_{u}\pi'(u|x)q_{\pi}(x,u)}                                                                                                                 \\
+			 & \onslide<3->{= \frac{\varepsilon}{|\mathcal{U}|}\sum_{u}q_{\pi}(x,u) + (1-\varepsilon)\max_{u}q_{\pi}(x,u)}                                                                     \\
+			 & \onslide<4->{\geq \frac{\varepsilon}{|\mathcal{U}|}\sum_{u}q_{\pi}(x,u) + (1-\varepsilon)\sum_{u}\frac{\pi(u|x)-\frac{\varepsilon}{|\mathcal{U}|}}{1-\varepsilon}q_{\pi}(x,u).}
 		\end{split}
 	\end{equation}
 	\normalsize

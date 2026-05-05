@@ -108,11 +108,11 @@
 	\begin{minipage}[t]{0.45\linewidth}
 		\vspace{-0.7cm}
 		\onslide<5->{
-			\begin{align*}
-				x                & \in\left\{1,2,3,4\right\}                                                                                                         \\
-				                 & =\left\{\mbox{small},\mbox{medium},\mbox{large},\mbox{gone}\right\}                                                               \\[1em]
-				\bm{\mathcal{P}} & = \begin{bmatrix}0 & 1-\alpha & 0 & \alpha  \\ 0 & 0 &1-\alpha & \alpha \\ 0 & 0 &1-\alpha & \alpha \\ 0 & 0 & 0 & 1\end{bmatrix}
-			\end{align*}}
+				\begin{align*}
+					x                & \in\left\{1,2,3,4\right\}                                                                                                         \\
+					                 & =\left\{\mbox{small},\mbox{medium},\mbox{large},\mbox{gone}\right\}                                                               \\[1em]
+					\bm{\mathcal{P}} & = \begin{bmatrix}0 & 1-\alpha & 0 & \alpha  \\ 0 & 0 &1-\alpha & \alpha \\ 0 & 0 &1-\alpha & \alpha \\ 0 & 0 & 0 & 1\end{bmatrix}
+				\end{align*}}
 	\end{minipage}
 	\begin{itemize}
 		\item At $x=1$ a small tree is planted ('starting point').
@@ -221,26 +221,26 @@
 	\end{itemize}
 	\vspace{0.25cm}
 	\onslide<3->{
-		\begin{figure}
-			\includegraphics[height=0.325\textheight]{fig/lec02/Value_Golf.pdf}
-			\caption{Isolines indicate state value of different golf ball locations (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
-			\label{fig:Value_Golf}
-		\end{figure}}
+			\begin{figure}
+				\includegraphics[height=0.325\textheight]{fig/lec02/Value_Golf.pdf}
+				\caption{Isolines indicate state value of different golf ball locations (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
+				\label{fig:Value_Golf}
+			\end{figure}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% State-Value Samples Forest Markov Reward Process %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{State-value samples of forest MRP}
-\onslide<1->{\begin{figure}
-		\includegraphics[height=0.5\textheight]{fig/lec02/Forest_Markov_Reward_Process.pdf}
-	\end{figure}
-	Exemplary \hl{samples} for $\hat{v}$ with $\gamma=0.5$ starting in $x=1$:
-	\begin{alignat*}{2}
-		              & x=1 \rightarrow 4,                                                 &  & \hat{v}= 1,                                            \\ }
-		\onslide<2->{ & x=1 \rightarrow 2 \rightarrow 4,                                   &  & \hat{v}= 1 + 0.5\cdot 2=2.0,                           \\ }
-		\onslide<3->{ & x=1 \rightarrow 2 \rightarrow 3  \rightarrow 4, \quad              &  & \hat{v}=1+ 0.5\cdot 2+ 0.25\cdot 3=3.75,               \\ }
-		\onslide<4->{ & x=1 \rightarrow 2 \rightarrow 3 \rightarrow 3 \rightarrow 4, \quad &  & \hat{v}=1+ 0.5\cdot 2+0.25 \cdot 3+ 0.125\cdot3=4.13.}
+	\onslide<1->{\begin{figure}
+				\includegraphics[height=0.5\textheight]{fig/lec02/Forest_Markov_Reward_Process.pdf}
+			\end{figure}
+			Exemplary \hl{samples} for $\hat{v}$ with $\gamma=0.5$ starting in $x=1$:
+			\begin{alignat*}{2}
+			& x=1 \rightarrow 4,                                                 &  & \hat{v}= 1,                                            \\ }
+	\onslide<2->{ & x=1 \rightarrow 2 \rightarrow 4,                                   &  & \hat{v}= 1 + 0.5\cdot 2=2.0,                           \\ }
+	\onslide<3->{ & x=1 \rightarrow 2 \rightarrow 3  \rightarrow 4, \quad              &  & \hat{v}=1+ 0.5\cdot 2+ 0.25\cdot 3=3.75,               \\ }
+	\onslide<4->{ & x=1 \rightarrow 2 \rightarrow 3 \rightarrow 3 \rightarrow 4, \quad &  & \hat{v}=1+ 0.5\cdot 2+0.25 \cdot 3+ 0.125\cdot3=4.13.}
 	\end{alignat*}
 }
 
@@ -252,24 +252,24 @@
 	\onslide<2->Solution: Bellman equation.
 	\begin{equation}
 		\onslide<3->{
-		\label{eq:Bellman_MRP}
-		\begin{split}
-			v(x_k) & = \E{G_k|X_k=x_k}}                                                                        \\
-			       & \onslide<4->{= \E{R_{k+1} + \gamma R_{k+2} + \gamma^2 R_{k+3}+\ldots|X_k=x_k}}            \\
-			       & \onslide<5->{= \E{R_{k+1} + \gamma \left(R_{k+2} + \gamma R_{k+3}+\ldots\right)|X_k=x_k}} \\
-			       & \onslide<6->{= \E{R_{k+1} + \gamma G_{k+1}|X_k=x_k}}                                      \\
-			       & \onslide<7->{= \E{R_{k+1} + \gamma 	v(X_{k+1})|X_k=x_k}}
+				\label{eq:Bellman_MRP}
+				\begin{split}
+				v(x_k) & = \E{G_k|X_k=x_k}}                                                                        \\
+		& \onslide<4->{= \E{R_{k+1} + \gamma R_{k+2} + \gamma^2 R_{k+3}+\ldots|X_k=x_k}}            \\
+		& \onslide<5->{= \E{R_{k+1} + \gamma \left(R_{k+2} + \gamma R_{k+3}+\ldots\right)|X_k=x_k}} \\
+		& \onslide<6->{= \E{R_{k+1} + \gamma G_{k+1}|X_k=x_k}}                                      \\
+		& \onslide<7->{= \E{R_{k+1} + \gamma 	v(X_{k+1})|X_k=x_k}}
 		\end{split}
 	\end{equation}
 	\vspace*{\fill}
 	\onslide<8->{
-		\begin{figure}
-			\hspace*{-1.5cm}
-			\includegraphics[width=6.1cm]{fig/lec02/Back_Up_MRP.pdf}
-			\caption{Backup diagram for $v(x_k)$}
-			\label{fig:Back_Up_MRP}
-		\end{figure}
-	}
+			\begin{figure}
+				\hspace*{-1.5cm}
+				\includegraphics[width=6.1cm]{fig/lec02/Back_Up_MRP.pdf}
+				\caption{Backup diagram for $v(x_k)$}
+				\label{fig:Back_Up_MRP}
+			\end{figure}
+		}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -395,25 +395,25 @@
 \frame{\frametitle{Policy (1)}
 	\vspace{-0.2cm}
 	\onslide<1->{
-		\begin{defi}{Policy in MDP (1)}{Policy_MDP}
-			In an MDP environment, a \hl{policy} is a distribution over actions given states:
-			\begin{equation}
-				\label{eq:Policy_MDP}
-				\pi(u_k|x_k)=\Pb{U_k=u_k  | X_k=x_k}\, .
-			\end{equation}
-		\end{defi}
-	}
+			\begin{defi}{Policy in MDP (1)}{Policy_MDP}
+				In an MDP environment, a \hl{policy} is a distribution over actions given states:
+				\begin{equation}
+					\label{eq:Policy_MDP}
+					\pi(u_k|x_k)=\Pb{U_k=u_k  | X_k=x_k}\, .
+				\end{equation}
+			\end{defi}
+		}
 	\vspace{-0.05cm}
 	\begin{itemize}
 		\onslide<2->{\item In MDPs, policies depend only on the current state.}
 		      \onslide<3->{\item A policy fully defines the agent's behavior (which might be stochastic or deterministic).}
 	\end{itemize}
 	\onslide<1->{
-		\begin{figure}
-			\includegraphics[height=0.35\textheight]{fig/lec02/monopoly.jpg}
-			\caption{What is you best Monopoly policy? (source: Ylanite Koppens on \href{https://www.pexels.com/de-de/foto/begrifflich-brettspiel-drinnen-farben-776654/}{Pexels})}
-		\end{figure}
-	}
+			\begin{figure}
+				\includegraphics[height=0.35\textheight]{fig/lec02/monopoly.jpg}
+				\caption{What is you best Monopoly policy? (source: Ylanite Koppens on \href{https://www.pexels.com/de-de/foto/begrifflich-brettspiel-drinnen-farben-776654/}{Pexels})}
+			\end{figure}
+		}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -639,23 +639,23 @@
 %% Bellman Optimality Equation (1)%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Bellman optimality equation (1)}
-\onslide<1->{
-	\begin{theo}{Bellman's principle of optimality}{bellman_principle_optimality}
-		\enquote{\textit{An optimal policy has the property that whatever the initial state and initial decision are, the remaining decisions must constitute an optimal policy with regard to the state resulting from the first decision.}}(R.E. Bellman, Dynamic Programming, 1957)
-	\end{theo}
-}
-\begin{itemize}
-	\onslide<2->{\item Any policy (i.e., also the optimal one) must satisfy the \hl{self-consistency condition} given by the Bellman expectation equation.}
-	      \onslide<3->{\item An optimal policy must deliver the maximum expected return being in a given state:}
-\end{itemize}
-\onslide<4->{
-	\begin{equation}
-		\begin{split}
+	\onslide<1->{
+			\begin{theo}{Bellman's principle of optimality}{bellman_principle_optimality}
+				\enquote{\textit{An optimal policy has the property that whatever the initial state and initial decision are, the remaining decisions must constitute an optimal policy with regard to the state resulting from the first decision.}}(R.E. Bellman, Dynamic Programming, 1957)
+			\end{theo}
+		}
+	\begin{itemize}
+		\onslide<2->{\item Any policy (i.e., also the optimal one) must satisfy the \hl{self-consistency condition} given by the Bellman expectation equation.}
+		      \onslide<3->{\item An optimal policy must deliver the maximum expected return being in a given state:}
+	\end{itemize}
+	\onslide<4->{
+			\begin{equation}
+			\begin{split}
 			v^*(x_k) & = \max_{u} q_{\pi^*}(x_k, u)\, }                                              \\
-			         & \onslide<5->{= \max_{u} \El{G_k|X_k=x_k, U=u}{\pi^*}\, }                      \\
-			         & \onslide<6->{= \max_{u} \El{R_{k+1} + \gamma G_{k+1}|X_k=x_k, U=u}{\pi^*}\, } \\
-			         & \onslide<7->{= \max_{u} \E{R_{k+1} + \gamma v^*(X_{k+1})|X_k=x_k, U=u}\, .}
-		\end{split}
+	& \onslide<5->{= \max_{u} \El{G_k|X_k=x_k, U=u}{\pi^*}\, }                      \\
+	& \onslide<6->{= \max_{u} \El{R_{k+1} + \gamma G_{k+1}|X_k=x_k, U=u}{\pi^*}\, } \\
+	& \onslide<7->{= \max_{u} \E{R_{k+1} + \gamma v^*(X_{k+1})|X_k=x_k, U=u}\, .}
+	\end{split}
 	\end{equation}
 }
 
@@ -744,16 +744,16 @@
 %% Optimal Policy for Forest Tree MDP: State-Value (1)%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Optimal policy for forest tree MDP: state value (1)}
-\vspace{-0.15cm}
-\onslide<1->{Start with $v(x=4)$ ('gone') and then continue going backwards:}
-\onslide<2->{
-	\begin{align*}
-		v^*(x=4)              & = 0\, ,}                                                                                                                 \\
-		\onslide<3->{v^*(x=3) & = \max \begin{cases} 1 + \gamma\left[(1-\alpha)v^*(x=3) + \alpha v^*(x=4)\right]\, ,\\ 3+\gamma v^*(x=4)\, ,\end{cases}} \\
-		                      & \onslide<4->{= \max \begin{cases} 1 + \gamma\left[(1-\alpha)v^*(x=3)\right]\, ,\\ 3\, ,\end{cases}}                      \\\
-		\onslide<5->{v^*(x=2) & = \max \begin{cases} 0 + \gamma\left[(1-\alpha)v^*(x=3) + \alpha v^*(x=4)\right]\, ,\\ 2+\gamma v^*(x=4)\, ,\end{cases}} \\
-		                      & \onslide<6->{= \max \begin{cases} \gamma\left[(1-\alpha)v^*(x=3)\right]\, ,\\ 2\, ,\end{cases}}                          \\
-		\onslide<7->{v^*(x=1) & = \max \begin{cases} \gamma\left[(1-\alpha)v^*(x=2)\right]\, ,\\ 1\, .\end{cases}}
+	\vspace{-0.15cm}
+	\onslide<1->{Start with $v(x=4)$ ('gone') and then continue going backwards:}
+	\onslide<2->{
+			\begin{align*}
+			v^*(x=4)              & = 0\, ,}                                                                                                                 \\
+	\onslide<3->{v^*(x=3) & = \max \begin{cases} 1 + \gamma\left[(1-\alpha)v^*(x=3) + \alpha v^*(x=4)\right]\, ,\\ 3+\gamma v^*(x=4)\, ,\end{cases}} \\
+	& \onslide<4->{= \max \begin{cases} 1 + \gamma\left[(1-\alpha)v^*(x=3)\right]\, ,\\ 3\, ,\end{cases}}                      \\\
+	\onslide<5->{v^*(x=2) & = \max \begin{cases} 0 + \gamma\left[(1-\alpha)v^*(x=3) + \alpha v^*(x=4)\right]\, ,\\ 2+\gamma v^*(x=4)\, ,\end{cases}} \\
+	& \onslide<6->{= \max \begin{cases} \gamma\left[(1-\alpha)v^*(x=3)\right]\, ,\\ 2\, ,\end{cases}}                          \\
+	\onslide<7->{v^*(x=1) & = \max \begin{cases} \gamma\left[(1-\alpha)v^*(x=2)\right]\, ,\\ 1\, .\end{cases}}
 	\end{align*}
 }
 
@@ -790,34 +790,34 @@
 %% Optimal Policy for Forest Tree MDP: Action-Value (1)%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Optimal policy for forest tree MDP: action value (1)}
-\onslide<1->{Use $u_{k+1}=u'$ to set up equation system:
-	\begin{align*}
-		q^*(x=1,u=c)              & = 1\, ,}                                      \\
-		\onslide<2->{q^*(x=1,u=w) & = \gamma(1-\alpha)\max_{u'}q^*(x=2,u')\, ,}   \\
-		\onslide<3->{q^*(x=2,u=c) & = 2\, ,}                                      \\
-		\onslide<4->{q^*(x=2,u=w) & = \gamma(1-\alpha)\max_{u'}q^*(x=3,u')\, ,}   \\
-		\onslide<5->{q^*(x=3,u=c) & = 3\, ,}                                      \\
-		\onslide<6->{q^*(x=3,u=w) & = 1+\gamma(1-\alpha)\max_{u'}q^*(x=3,u')\, .}
+	\onslide<1->{Use $u_{k+1}=u'$ to set up equation system:
+			\begin{align*}
+			q^*(x=1,u=c)              & = 1\, ,}                                      \\
+	\onslide<2->{q^*(x=1,u=w) & = \gamma(1-\alpha)\max_{u'}q^*(x=2,u')\, ,}   \\
+	\onslide<3->{q^*(x=2,u=c) & = 2\, ,}                                      \\
+	\onslide<4->{q^*(x=2,u=w) & = \gamma(1-\alpha)\max_{u'}q^*(x=3,u')\, ,}   \\
+	\onslide<5->{q^*(x=3,u=c) & = 3\, ,}                                      \\
+	\onslide<6->{q^*(x=3,u=w) & = 1+\gamma(1-\alpha)\max_{u'}q^*(x=3,u')\, .}
 	\end{align*}
 	\onslide<7->{
-		\begin{itemize}
-			\item There are six action-state pairs in total.
-			\item Three of them can be directly determined.
-			\item Three unknowns and three equations remain.
-		\end{itemize}
-	}
+			\begin{itemize}
+				\item There are six action-state pairs in total.
+				\item Three of them can be directly determined.
+				\item Three unknowns and three equations remain.
+			\end{itemize}
+		}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optimal Policy for Forest Tree MDP: Action-Value (2)%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Optimal policy for forest tree MDP: action value (2)}
-\onslide<1->{
-	Rearrange $\max$ expressions for unknown action values:
-	\begin{align*}
-		q^*(x=1,u=w)              & = \gamma(1-\alpha)\max\begin{cases}\gamma(1-\alpha)\max\begin{cases}1+\gamma(1-\alpha)q^*(3,w),\\3,\end{cases}\\2,\end{cases}} \\
-		\onslide<2->{q^*(x=2,u=w) & = \gamma(1-\alpha)\max\begin{cases}1+\gamma(1-\alpha)q^*(3,w),\\3,\end{cases}}                     \\
-		\onslide<3->{q^*(x=3,u=w) & = 1+\gamma(1-\alpha)\max\begin{cases}q^*(3,w),\\3.\end{cases}\,}
+	\onslide<1->{
+			Rearrange $\max$ expressions for unknown action values:
+			\begin{align*}
+			q^*(x=1,u=w)              & = \gamma(1-\alpha)\max\begin{cases}\gamma(1-\alpha)\max\begin{cases}1+\gamma(1-\alpha)q^*(3,w),\\3,\end{cases}\\2,\end{cases}} \\
+	\onslide<2->{q^*(x=2,u=w) & = \gamma(1-\alpha)\max\begin{cases}1+\gamma(1-\alpha)q^*(3,w),\\3,\end{cases}}                     \\
+	\onslide<3->{q^*(x=3,u=w) & = 1+\gamma(1-\alpha)\max\begin{cases}q^*(3,w),\\3.\end{cases}\,}
 	\end{align*}
 	\onslide<4->{Again, retrieve unknown optimal action values by numerical optimization solvers or manual backwards calculation (dynamic programming).}
 }

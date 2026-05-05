@@ -585,19 +585,19 @@
 		\Param{$\varepsilon\in\left\{\mathbb{R}|0<\varepsilon<<1\right\}$, update factor $k_w\in\left\{\mathbb{N}|1\leq k_w\right\}$}
 		\Init{weights $\bm{w}=\bm{w}^-\in\mathbb{R}^\zeta$ arbitrarily, memory $\bm{\mathcal{D}}$ with certain capacity}
 		\For{$j=1,2,\ldots$ episodes}{
-		initialize $\bm{x}_{0}$\;
-		\For{$k=0, 1, 2 \ldots $ time steps}{
-		$u_k \leftarrow$ apply action $\varepsilon$-greedy w.r.t $\hat{q}(\bm{x}_k, \cdot, \bm{w})$\;
-		observe $\bm{x}_{k+1}$ and $r_{k+1}$\;
-		store tuple $\left\langle \bm{x}_k, u_k, r_{k+1}, \bm{x}_{k+1}\right\rangle$ in $\bm{\mathcal{D}}$\;
-		sample mini-batch $\bm{\mathcal{D}}_b$ from $\bm{\mathcal{D}}$ (after initial memory warmup)\;
-		\For(calculate $Q$-targets){$i=1,\ldots,b$ samples}{
-			\lIf{$\bm{x}_{i+1}$ is terminal}{$y_i=r_{i+1}$}
-			\lElse{$y_i= r_{i+1}+ \gamma \max_u \hat{q}(\bm{x}_{i+1},u,\bm{w}^-)$}
-		}
-		fit $\bm{w}$ on loss $\mathcal{L}(\bm{w})=[y_i - \hat{q}(\bm{x}_i, u_i, \bm{w})]^2_{\bm{\mathcal{D}}_b}$\;
-		\lIf{$k \mod k_w=0$}{$\bm{w}^-\leftarrow \bm{w}$ (update target weights)}
-		}
+			initialize $\bm{x}_{0}$\;
+			\For{$k=0, 1, 2 \ldots $ time steps}{
+				$u_k \leftarrow$ apply action $\varepsilon$-greedy w.r.t $\hat{q}(\bm{x}_k, \cdot, \bm{w})$\;
+				observe $\bm{x}_{k+1}$ and $r_{k+1}$\;
+				store tuple $\left\langle \bm{x}_k, u_k, r_{k+1}, \bm{x}_{k+1}\right\rangle$ in $\bm{\mathcal{D}}$\;
+				sample mini-batch $\bm{\mathcal{D}}_b$ from $\bm{\mathcal{D}}$ (after initial memory warmup)\;
+				\For(calculate $Q$-targets){$i=1,\ldots,b$ samples}{
+					\lIf{$\bm{x}_{i+1}$ is terminal}{$y_i=r_{i+1}$}
+					\lElse{$y_i= r_{i+1}+ \gamma \max_u \hat{q}(\bm{x}_{i+1},u,\bm{w}^-)$}
+				}
+				fit $\bm{w}$ on loss $\mathcal{L}(\bm{w})=[y_i - \hat{q}(\bm{x}_i, u_i, \bm{w})]^2_{\bm{\mathcal{D}}_b}$\;
+				\lIf{$k \mod k_w=0$}{$\bm{w}^-\leftarrow \bm{w}$ (update target weights)}
+			}
 		}
 		\caption{DQN (output: parameter vector $\bm{w}$ for $\hat{q}^*$)}
 		\label{algo:DQN}

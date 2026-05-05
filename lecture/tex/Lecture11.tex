@@ -291,21 +291,21 @@
 %% Simple Score Function Examples %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Simple score function examples}
-\onslide<1->{Soft-max policy with linear function approximation:
-\begin{equation*}
-	\begin{split}
-		\pi(u|\bm{x},\bm{\theta})                                                           & = \frac{e^{\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u)}}{\sum_i e^{\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, i)}}\\}
-		\onslide<2->{\Leftrightarrow\quad \nabla_{\bm{\theta}}\ln \pi(u|\bm{x},\bm{\theta}) & = \nabla_{\bm{\theta}}\left(\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u) - \ln\left(\sum_i e^{\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, i)}\right)\right)\\}
-		\onslide<3->{                                                                       & = \tilde{\bm{x}}(\bm{x},\bm{u}) - \El{\tilde{\bm{x}}(\bm{x},\cdot)}{\pi}}
+	\onslide<1->{Soft-max policy with linear function approximation:
+			\begin{equation*}
+			\begin{split}
+			\pi(u|\bm{x},\bm{\theta})                                                           & = \frac{e^{\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u)}}{\sum_i e^{\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, i)}}\\}
+	\onslide<2->{\Leftrightarrow\quad \nabla_{\bm{\theta}}\ln \pi(u|\bm{x},\bm{\theta}) & = \nabla_{\bm{\theta}}\left(\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u) - \ln\left(\sum_i e^{\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, i)}\right)\right)\\}
+	\onslide<3->{                                                                       & = \tilde{\bm{x}}(\bm{x},\bm{u}) - \El{\tilde{\bm{x}}(\bm{x},\cdot)}{\pi}}
 	\end{split}
-\end{equation*}
-\onslide<4->{Univariate Gaussian policy with linear function approximation and given $\sigma$:
-	\begin{equation*}
-		\begin{split}
+	\end{equation*}
+	\onslide<4->{Univariate Gaussian policy with linear function approximation and given $\sigma$:
+			\begin{equation*}
+			\begin{split}
 			\pi(u|\bm{x},\bm{\theta})                                                           & = \frac{1}{\sigma \sqrt{2\pi}}\exp\left(-\frac{(u-\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u))^2}{2\sigma^2}\right)\\}
-			\onslide<5->{\Leftrightarrow\quad \nabla_{\bm{\theta}}\ln \pi(u|\bm{x},\bm{\theta}) & = \nabla_{\bm{\theta}}\left(\ln\left(\frac{1}{\sigma \sqrt{2\pi}}\right) -\frac{(u-\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u))^2}{2\sigma^2}\right)\\}
-			\onslide<6->{                                                                       & = \frac{\left(u - \bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u)\right)\tilde{\bm{x}}(\bm{x}, u)}{\sigma^2}}
-		\end{split}
+	\onslide<5->{\Leftrightarrow\quad \nabla_{\bm{\theta}}\ln \pi(u|\bm{x},\bm{\theta}) & = \nabla_{\bm{\theta}}\left(\ln\left(\frac{1}{\sigma \sqrt{2\pi}}\right) -\frac{(u-\bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u))^2}{2\sigma^2}\right)\\}
+	\onslide<6->{                                                                       & = \frac{\left(u - \bm{\theta}\T\tilde{\bm{x}}(\bm{x}, u)\right)\tilde{\bm{x}}(\bm{x}, u)}{\sigma^2}}
+	\end{split}
 	\end{equation*}
 }
 

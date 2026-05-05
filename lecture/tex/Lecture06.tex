@@ -487,24 +487,24 @@
 %% $\lambda$-Return (2) %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{$\lambda$-return (2)}
-\onslide<1->{\begin{itemize}
-		\item Rewrite $\lambda$-return for episodic tasks with termination at $k=T$:
-		      \begin{equation}
-			      g_k^\lambda = (1-\lambda)\sum_{n=1}^{T-k-1}\lambda^{(n-1)}g_{k:k+n} + \lambda^{T-k-1}g_k\,.
-			      \label{eq:lambda_return_episodic}
-		      \end{equation}
-		\item Return $g_k$ after termination is weighted with residual weight $\lambda^{T-k-1}$.}
-		      \onslide<2->{\item Above, \eqref{eq:lambda_return_episodic} includes two special cases:
-		      \begin{itemize}
-			      \item If $\lambda=0$: becomes TD(0) update.
-			      \item If $\lambda=1$: becomes MC update.
-		      \end{itemize}}
+	\onslide<1->{\begin{itemize}
+			\item Rewrite $\lambda$-return for episodic tasks with termination at $k=T$:
+			\begin{equation}
+				g_k^\lambda = (1-\lambda)\sum_{n=1}^{T-k-1}\lambda^{(n-1)}g_{k:k+n} + \lambda^{T-k-1}g_k\,.
+				\label{eq:lambda_return_episodic}
+			\end{equation}
+			\item Return $g_k$ after termination is weighted with residual weight $\lambda^{T-k-1}$.}
+	\onslide<2->{\item Above, \eqref{eq:lambda_return_episodic} includes two special cases:
+			\begin{itemize}
+				\item If $\lambda=0$: becomes TD(0) update.
+				\item If $\lambda=1$: becomes MC update.
+			\end{itemize}}
 	\end{itemize}
 	\onslide<1->{\begin{figure}
-			\includegraphics[height=0.29\textheight]{fig/lec06/Lambda_Weighting_Series.pdf}
-			\caption{Weighting overview in $\lambda$-return series (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
-			\label{fig:Lambda_Weighting_Series}
-		\end{figure}}
+				\includegraphics[height=0.29\textheight]{fig/lec06/Lambda_Weighting_Series.pdf}
+				\caption{Weighting overview in $\lambda$-return series (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
+				\label{fig:Lambda_Weighting_Series}
+			\end{figure}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -527,33 +527,33 @@
 %% Forward View %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Forward view}
-\onslide<1->{\begin{itemize}
-		\item Both, $n$-step and $\lambda$-return updates, are based on a forward view.
-		\item We have to wait for future states and rewards to arrive before we are able to perform an update.}
-		      \onslide<2->{\item Currently, $\lambda$-returns are only an alternative to $n$-step updates with different weighting options.}
+	\onslide<1->{\begin{itemize}
+			\item Both, $n$-step and $\lambda$-return updates, are based on a forward view.
+			\item We have to wait for future states and rewards to arrive before we are able to perform an update.}
+	\onslide<2->{\item Currently, $\lambda$-returns are only an alternative to $n$-step updates with different weighting options.}
 	\end{itemize}
 	\onslide<1->{\begin{figure}
-			\includegraphics[height=0.25\textheight]{fig/lec06/Forward_View.pdf}
-			\caption{The forward view: an update of the current state value is evaluated by future transitions (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
-			\label{fig:Forward_View}
-		\end{figure}}
+				\includegraphics[height=0.25\textheight]{fig/lec06/Forward_View.pdf}
+				\caption{The forward view: an update of the current state value is evaluated by future transitions (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
+				\label{fig:Forward_View}
+			\end{figure}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Backward View %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{Backward view of TD($\lambda$)}
-\onslide<1->{General idea:
-	\begin{itemize}
-		\item Use $\lambda$-weighted returns looking into the past.
-		\item Implement this in a recursive fashion to save memory.}
-		      \onslide<2->{\item Therefore, an \hl{eligibility trace $z_k$} denoting the importance of past events to the current state update is introduced. }
+	\onslide<1->{General idea:
+			\begin{itemize}
+			\item Use $\lambda$-weighted returns looking into the past.
+			\item Implement this in a recursive fashion to save memory.}
+	\onslide<2->{\item Therefore, an \hl{eligibility trace $z_k$} denoting the importance of past events to the current state update is introduced. }
 	\end{itemize}
 	\onslide<1->{\begin{figure}
-			\includegraphics[height=0.4\textheight]{fig/lec06/Backward_View.pdf}
-			\caption{The backward view: an update of the current state value is evaluated based on a trace of past transitions (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
-			\label{fig:Backward_View}
-		\end{figure}}
+				\includegraphics[height=0.4\textheight]{fig/lec06/Backward_View.pdf}
+				\caption{The backward view: an update of the current state value is evaluated based on a trace of past transitions (source: R. Sutton and G. Barto, Reinforcement learning: an introduction, 2018, \href{https://creativecommons.org/licenses/by-nc-nd/2.0/}{CC BY-NC-ND 2.0})}
+				\label{fig:Backward_View}
+			\end{figure}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
