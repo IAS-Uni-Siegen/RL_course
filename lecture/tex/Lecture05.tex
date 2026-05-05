@@ -120,15 +120,15 @@
 %% TD Error and its Relation to the MC Error %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frame{\frametitle{TD error and its relation to the MC error }
-\onslide<1->{Let's assume that the TD(0) estimate $\hat{v}(x)$ is not changing over one episode as it would be for MC prediction:
-	\begin{equation}
-		\begin{split}
+	\onslide<1->{Let's assume that the TD(0) estimate $\hat{v}(x)$ is not changing over one episode as it would be for MC prediction:
+			\begin{equation}
+			\begin{split}
 			\underbrace{g_k - \hat{v}(x_k)}_{\mbox{MC-error}} & = r_{k+1} + \gamma g_{k+1} - \hat{v}(x_k)	+\gamma  \hat{v}(x_{k+1})	-\gamma  \hat{v}(x_{k+1})\\}
-			\onslide<2->{                                     & =\delta_k + \gamma(g_{k+1} - \hat{v}(x_{k+1}))\\}
-			\onslide<3->{                                     & =\delta_k + \gamma \delta_{k+1} + \gamma^2(g_{k+2} - \hat{v}(x_{k+2}))\\}
-			\onslide<4->{                                     & =\delta_k + \gamma \delta_{k+1} + \gamma^2 \delta_{k+2} +\gamma^3(g_{k+3} - \hat{v}(x_{k+3}))=\cdots \\}
-			\onslide<5->{                                     & =\sum_{i=k}^{T-1} \gamma^{i-k}\delta_i.}
-		\end{split}
+	\onslide<2->{                                     & =\delta_k + \gamma(g_{k+1} - \hat{v}(x_{k+1}))\\}
+	\onslide<3->{                                     & =\delta_k + \gamma \delta_{k+1} + \gamma^2(g_{k+2} - \hat{v}(x_{k+2}))\\}
+	\onslide<4->{                                     & =\delta_k + \gamma \delta_{k+1} + \gamma^2 \delta_{k+2} +\gamma^3(g_{k+3} - \hat{v}(x_{k+3}))=\cdots \\}
+	\onslide<5->{                                     & =\sum_{i=k}^{T-1} \gamma^{i-k}\delta_i.}
+	\end{split}
 	\end{equation}
 	\begin{itemize}
 		\item<6-> MC error is the discounted sum of TD errors in this simplified case.
@@ -236,7 +236,7 @@
 	\end{theo}\pause
 	\begin{itemize}
 		\item In particular, $\alpha_k=\frac{1}{k}$ meets the condition \eqref{eq:stoch_approx_condition}.\pause
-		\item Often TD(0) converges faster than MC, but there is no guarantee.\pause
+		\item TD(0) may converge faster than MC, but there is no guarantee.\pause
 		\item TD(0) can be more sensitive to bad initializations $\hat{v}_0(x)$ compared to MC.
 	\end{itemize}
 }
