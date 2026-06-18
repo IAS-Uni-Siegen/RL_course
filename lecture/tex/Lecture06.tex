@@ -364,7 +364,7 @@
 				}
 				$\tau\leftarrow k-n+1$ ($\tau$ time index for estimate update)\;
 				\If{$\tau \geq 0$}{
-					\hl{$\rho \leftarrow \prod_{i=\tau }^{\min (\tau + n - 2,T-1)}\frac{\pi(u_i|x_{k})}{b(u_i|x_{i})}$}\;
+					\hl{$\rho \leftarrow \prod_{i=\tau }^{\min (\tau + n - 1,T-1)}\frac{\pi(u_i|x_{k})}{b(u_i|x_{i})}$}\;
 					$g\leftarrow \sum_{i=\tau+1}^{\min(\tau + n, T)}\gamma^{i-\tau-1} r_i$\;
 					if $\tau+n < T$: $g\leftarrow g + \gamma^n \hat{v}(x_{\tau+n})$\;
 					$\hat{v}(x_{\tau}) \leftarrow \hat{v}(x_{\tau}) + \alpha \hl{\rho}\left[g - \hat{v}(x_{\tau})\right]$\;
@@ -400,7 +400,7 @@
 				}
 				$\tau\leftarrow k-n+1$ ($\tau$ time index for estimate update)\;
 				\If{$\tau \geq 0$}{
-					\hl{$\rho \leftarrow \prod_{i=\tau +1}^{\min (\tau + n -1,T-1)}\frac{\pi(u_i|x_{i})}{b(u_i|x_{i})}$}\;
+					\hl{$\rho \leftarrow \prod_{i=\tau +1}^{\min (\tau + n,T)}\frac{\pi(u_i|x_{i})}{b(u_i|x_{i})}$}\;
 					$g\leftarrow \sum_{i=\tau+1}^{\min(\tau + n, T)}\gamma^{i-\tau-1} r_i$\;
 					if $\tau+n < T$: $g\leftarrow g + \gamma^n \hat{q}(x_{\tau+n}, u_{\tau+n})$\;
 					$\hat{q}(x_{\tau},u_{\tau}) \leftarrow \hat{q}(x_{\tau},u_{\tau}) + \alpha \hl{\rho} \left[g - \hat{q}(x_{\tau}, u_{\tau})\right]$\;
