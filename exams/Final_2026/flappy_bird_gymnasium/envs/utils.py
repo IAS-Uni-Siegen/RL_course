@@ -99,8 +99,7 @@ def load_images(
         images["pipe"] = (img_flip(pipe_sprite, False, True), pipe_sprite)
     except FileNotFoundError as ex:
         raise FileNotFoundError(
-            "Can't find the sprites folder! No such file or"
-            f" directory: {SPRITES_PATH}"
+            f"Can't find the sprites folder! No such file or directory: {SPRITES_PATH}"
         ) from ex
 
     return images
@@ -124,7 +123,7 @@ def load_sounds() -> Dict[str, pyg_mixer.Sound]:
         sounds["wing"] = pyg_mixer.Sound(AUDIO_PATH + "/wing" + soundExt)
     except FileNotFoundError as ex:
         raise FileNotFoundError(
-            "Can't find the audio folder! No such file or " f"directory: {AUDIO_PATH}"
+            f"Can't find the audio folder! No such file or directory: {AUDIO_PATH}"
         ) from ex
 
     return sounds
