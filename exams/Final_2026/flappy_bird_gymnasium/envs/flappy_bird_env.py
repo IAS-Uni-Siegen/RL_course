@@ -69,10 +69,9 @@ class FlappyBirdEnv(gymnasium.Env):
         assert render_mode is None or render_mode in self.metadata["render_modes"]
         self.render_mode = render_mode
         self._score_limit = score_limit
-        self._action_threshold = .5
+        self._action_threshold = 0.5
 
-        self.action_space = gymnasium.spaces.Box(
-            0.0, 1.0, shape=(1,), dtype=np.float64)
+        self.action_space = gymnasium.spaces.Box(0.0, 1.0, shape=(1,), dtype=np.float64)
 
         if normalize_obs:
             self.observation_space = gymnasium.spaces.Box(
@@ -179,8 +178,7 @@ class FlappyBirdEnv(gymnasium.Env):
             self._player_rot = 45
 
         self._player_y += min(
-            self._player_vel_y, self._ground["y"] -
-            self._player_y - PLAYER_HEIGHT
+            self._player_vel_y, self._ground["y"] - self._player_y - PLAYER_HEIGHT
         )
 
         # move pipes to left
@@ -215,8 +213,7 @@ class FlappyBirdEnv(gymnasium.Env):
             obs,
             reward,
             terminal,
-            (self._score_limit is not None) and (
-                self._score >= self._score_limit),
+            (self._score_limit is not None) and (self._score >= self._score_limit),
             info,
         )
 
@@ -396,8 +393,7 @@ class FlappyBirdEnv(gymnasium.Env):
                 continue
 
             if type(value) in (tuple, list):
-                self._images[name] = tuple(
-                    [img.convert_alpha() for img in value])
+                self._images[name] = tuple([img.convert_alpha() for img in value])
             else:
                 self._images[name] = (
                     value.convert() if name == "background" else value.convert_alpha()
@@ -415,8 +411,7 @@ class FlappyBirdEnv(gymnasium.Env):
 
         for digit in score_digits:
             self._surface.blit(
-                self._images["numbers"][digit], (x_offset,
-                                                 self._screen_height * 0.1)
+                self._images["numbers"][digit], (x_offset, self._screen_height * 0.1)
             )
             x_offset += self._images["numbers"][digit].get_width()
 
@@ -437,14 +432,11 @@ class FlappyBirdEnv(gymnasium.Env):
 
         # Pipes
         for up_pipe, low_pipe in zip(self._upper_pipes, self._lower_pipes):
-            self._surface.blit(
-                self._images["pipe"][0], (up_pipe["x"], up_pipe["y"]))
-            self._surface.blit(
-                self._images["pipe"][1], (low_pipe["x"], low_pipe["y"]))
+            self._surface.blit(self._images["pipe"][0], (up_pipe["x"], up_pipe["y"]))
+            self._surface.blit(self._images["pipe"][1], (low_pipe["x"], low_pipe["y"]))
 
         # Base (ground)
-        self._surface.blit(self._images["base"],
-                           (self._ground["x"], self._ground["y"]))
+        self._surface.blit(self._images["base"], (self._ground["x"], self._ground["y"]))
 
         # Getting player's rotation
         visible_rot = PLAYER_ROT_THR
