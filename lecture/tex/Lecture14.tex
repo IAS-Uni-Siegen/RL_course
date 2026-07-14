@@ -121,7 +121,7 @@
 		\begin{column}{0.54\textwidth}
 			\begin{minipage}[c]{\linewidth}
 				\begin{itemize}
-					\item Cont. state- and actionspace
+					\item Cont. state and action space
 					\item Deep deterministic policy gradient agent
 					\item Gird-forming inverter
 					\item Stochastic load acts as disturbance
@@ -198,9 +198,9 @@
 				\begin{itemize}
 					\item Safety shield: Ensure that action does not cause state limit violation in future system trajectories
 					\item Such a state action pair is called feasible
-					\item Calculation of \textcolor{signalgreen}{feasible set} requires a model
-					\item Training data can be utilized to \href{https://ei.uni-paderborn.de/en/lea/teaching/veranstaltungen/teaching/translate-to-english-systemidentifikation}{identify} model
-					\item Here, recursive least squares (RLS) is applied
+					\item<2-> Calculation of \textcolor{signalgreen}{feasible set} requires a model
+					\item<3-> Training data can be utilized to \href{https://ei.uni-paderborn.de/en/lea/teaching/veranstaltungen/teaching/translate-to-english-systemidentifikation}{identify} model
+					\item<4-> Here, recursive least squares (RLS) is applied
 				\end{itemize}
 			\end{minipage}
 		\end{column}
@@ -224,12 +224,11 @@
 		\begin{column}{0.54\textwidth}
 			\begin{minipage}[c]{\linewidth}
 				\begin{itemize}
-					\item Three different approaches
+					\item Three different approaches (five trainings run each)
 					\item \textcolor{signalblue}{$\mathrm{DDPG}_\mathrm{}$}: Agent without safety shield
-					\item \textcolor{signalred}{$\mathrm{DDPG}_\mathrm{SG}$}: Agent with safety shield using perfect a priori knowledge
-					\item \textcolor{signalgreen}{$\mathrm{DDPG}_\mathrm{SG,RLS}$}: Agent with safety shield without a priori knowledge, identifying model using RLS
-					\item Five agents trained per approach
-					\item Results in D. Weber et al., \textit{Safe Reinforcement Learning-Based Control in
+					\item<2-> \textcolor{signalred}{$\mathrm{DDPG}_\mathrm{SG}$}: Agent with safety shield using perfect a priori knowledge
+					\item<3-> \textcolor{signalgreen}{$\mathrm{DDPG}_\mathrm{SG,RLS}$}: Agent with safety shield without a priori knowledge, identifying model using RLS
+					\item<4-> Results in D. Weber et al., \textit{Safe Reinforcement Learning-Based Control in
 						      Power Electronic Systems}, 2023, doi: \href{https://ieeexplore.ieee.org/abstract/document/10182718}{10.1109/FES57669.2023.10182718}
 				\end{itemize}
 			\end{minipage}
@@ -313,9 +312,9 @@
 			\begin{minipage}[c]{\linewidth}
 				\begin{itemize}
 					\item The DQ-DTC is basically a DQN
-					\item Sampling time of the plant system is $T_\text{s}=\SI{50}{\micro\second}$
-					\item DQN inference, safeguarding and system identification must fit into $T_\text{s}$
-					\item Source: M. Schenke et al., \textit{Finite-Set Direct Torque Control via Edge Computing-Assisted
+					\item<2-> Sampling time of the plant system is $T_\text{s}=\SI{50}{\micro\second}$
+					\item<3-> DQN inference, safeguarding and system identification must fit into $T_\text{s}$
+					\item<4-> Source: M. Schenke et al., \textit{Finite-Set Direct Torque Control via Edge Computing-Assisted
 						      Safe Reinforcement Learning for a Permanent Magnet Synchronous Motor}, 2023, doi: \href{https://ieeexplore.ieee.org/abstract/document/10214121}{10.1109/TPEL.2023.3303651}
 				\end{itemize}
 			\end{minipage}
@@ -341,9 +340,9 @@
 			\begin{minipage}[c]{\linewidth}
 				\begin{itemize}
 					\item Each neuron has the same job $y_{n,l+1}=f(\bm{y}_{l}^\top\bm{w}_{n,l}+b_{n,l})$
-					\item CPU must evaluate each neuron sequentially
-					\item FPGA can evaluate each neuron at the same time
-					\item Maximum number of parallel computations is limited
+					\item<2-> CPU must evaluate each neuron sequentially
+					\item<3-> FPGA can evaluate each neuron at the same time
+					\item<4-> Maximum number of parallel computations is limited
 				\end{itemize}
 			\end{minipage}
 		\end{column}
@@ -369,8 +368,8 @@
 			\begin{minipage}[c]{\linewidth}
 				\begin{itemize}
 					\item Backward pass / learning steps are outsource to workstation
-					\item Communication between test bench and workstation is based on TCP/IP
-					\item Backward pass is generic and has no time constraints $\rightarrow$ low application effort
+					\item<2-> Communication between test bench and workstation is based on TCP/IP
+					\item<3-> Backward pass is generic and has no time constraints $\rightarrow$ low application effort
 				\end{itemize}
 			\end{minipage}
 		\end{column}
@@ -404,8 +403,8 @@
 	\begin{figure}%
 		\centering
 		\subfloat[][General problem class is similar, environments only differ in some characteristics, the agent could transfer learned behavior]{\includegraphics[scale=0.6]{fig/lec14/Meta_RL_Set_MDPS.pdf}}%
-		\qquad
-		\subfloat[][Solution approach: treat the environment as partially observable, distinguishing details are not directly available]{\includegraphics[scale=0.6]{fig/lec14/Meta_RL_POMDP.pdf}}%
+		\qquad\onslide<2->{%
+				\subfloat[][Solution approach: treat the environment as partially observable, distinguishing details are not directly available]{\includegraphics[scale=0.6]{fig/lec14/Meta_RL_POMDP.pdf}}}%
 	\end{figure}
 }
 
@@ -418,8 +417,8 @@
 			\begin{minipage}[c]{\linewidth}
 				\begin{itemize}
 					\item The agent must have some mechanism that allows adaptation to the specific environment
-					\item This means, the distinguishing details must be extracted in some way
-					\item Usually, they can be retrieved from a larger set of observations
+					\item<2-> This means, the distinguishing details must be extracted in some way
+					\item<3-> Usually, they can be retrieved from a larger set of observations
 				\end{itemize}
 			\end{minipage}
 		\end{column}
@@ -464,8 +463,8 @@
 			\begin{minipage}[c]{\linewidth}
 				\begin{itemize}
 					\item Make use of context network
-					\item Generate context $\bm{z}$ with a fix set of observations $\rightarrow$ $\bm{z}=\text{const.}$
-					\item Source: D. Jakobeit et al., \href{https://ieeexplore.ieee.org/abstract/document/10068250}{\textit{Meta-Reinforcement Learning-Based Current
+					\item<2-> Generate context $\bm{z}$ with a fix set of observations $\rightarrow$ $\bm{z}=\text{const.}$
+					\item<3-> Source: D. Jakobeit et al., \href{https://ieeexplore.ieee.org/abstract/document/10068250}{\textit{Meta-Reinforcement Learning-Based Current
 							      Control of Permanent Magnet Synchronous Motor
 							      Drives for a Wide Range of Power Classes}}, IEEE TPEL, 2023
 				\end{itemize}
